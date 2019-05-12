@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/sign-in', function(req, res, next) {
-  var userID = req.body.userID;
+  var userID = req.body;
+  console.log(userID);
   res.cookie('userCookie', userID);
   res.redirect('/chat');
 });

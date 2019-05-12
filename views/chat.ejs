@@ -9,18 +9,17 @@
     <p>Welcome to <%= title %></p>
     <h2>Chat Area</h2>
     <div class="chat-window">
-      <h3>You're chatting with Random Person! :D</h3>
+      <h3>You're chatting with Random Person! <%= userID %> :D</h3>
       <div class="uiScrollableAreaBody">
         <% for (var i = 0; i < chatMessages.length; i++) { %>
           <div class="">
-            <span><%= chatMessages[i].message %></span>
-            <span class="align-right"><%= chatMessages[i].user %></span>
+            <span><%= chatMessages[i].message %> : <%= chatMessages[i].userID %></span>
           </div>
         <% } %>
       </div>
       <div class="">
         <form class="" action="/chat/add" method="post">
-          <input type="hidden" name="userID" value="hello">
+          <input type="hidden" name="userID" value= <%= userID %>>
           <textarea name="message" rows="8" cols="80" placeholder="Type your message here"></textarea>
           <button type="submit" id="message" name="submit-message">Send</button>
         </form>
