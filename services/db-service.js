@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
+
+
 var messageSchema = new Schema({
   message: String,
   userID: String,
@@ -19,3 +22,6 @@ var userSchema = new Schema({
     Strengths: Array
   }
 });
+
+var message = mongoose.model('message', messageSchema);
+var user = mongoose.model('user', userSchema);
