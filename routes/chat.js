@@ -2,21 +2,25 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
-let chatMessages = [];
+var chatService = require('./../services/chat-service.js');
 
 router.get('/', function(req, res, next) {
-  res.render('chat', {
-    title: 'Chatbot',
-    chatMessages: chatMessages,
-    userID: req.cookies.userCookie
-    });
+  if (("userCookie" in req.cookies) && req.cookies.userCookie != null ) {
+    //console.log("Login Successful");
+    res.render('chat', {
+      title: 'Chatbot',
+      chatMessages: chatService.getAllMessages(),
+      userID: req.cookies.userCookie
+      });
+  } else {
+    res.render('login', { title: 'Login' });
+  }
 });
 
 router.post('/add', function(req, res, next) {
   var newMessage = req.body;
   var userID = req.body.userID;
-  console.log(userID);
-  chatMessages.push(newMessage);
+  chatService.addMessages(newMessage);
   //console.log(newMessage);
   res.redirect('/chat');
 });
