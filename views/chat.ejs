@@ -3,11 +3,16 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-
+    <script type="text/javascript">
+      var del_cookie = function(name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        location.reload();
+      };
+    </script>
   </head>
   <body>
     <% if(userID != null) { %>
-      <a href="/logout">Logout</a>
+      <a href="javascript:del_cookie('userCookie');">Logout</a>
     <% } else { %>
       <a href="/login">Login</a>
     <%  } %>
@@ -15,13 +20,15 @@
     <h2>Chat Area</h2>
     <div class="chat-window">
       <h3>You're chatting with People! <%= userID %></h3>
+      </div>
       <div class="uiScrollableAreaBody">
         <% for (var i = 0; i < chatMessages.length; i++) { %>
-          <div class="">
-            <span><%= chatMessages[i].message %> : <%= chatMessages[i].userID %></span>
+          <div class="messages">
+              <span class="speech-bubble"><%= chatMessages[i].message %> : <strong> <%= chatMessages[i].userID %> </strong> </span>
           </div>
         <% } %>
       </div>
+
       <div class="">
         <form class="" action="/chat/add" method="post">
           <input type="hidden" name="userID" value=<%= userID %>>

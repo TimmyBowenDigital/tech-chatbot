@@ -6,3 +6,44 @@ body {
 a {
   color: #00B7FF;
 }
+
+.speech-bubble {
+	position: relative;
+	background: #7bdc63;
+	border-radius: 0.4em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 19px solid transparent;
+	border-right-color: #7bdc63;
+	border-left: 0;
+	margin-top: -19px;
+	margin-left: -19px;
+}
+
+.received-message {
+  text-align: left;
+}
+
+.sent-message {
+  text-align: left;
+}
+
+.messages {
+  margin: 5px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+  display: block;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fit, 200px)
+}

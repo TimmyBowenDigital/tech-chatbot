@@ -21,7 +21,6 @@ router.post('/add', function(req, res, next) {
   var newMessage = req.body;
   var userID = req.body.userID;
   chatService.addMessages(newMessage);
-  //console.log(newMessage);
   res.redirect('/chat');
 });
 

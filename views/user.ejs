@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> <% title %> </title>
+  </head>
+  <body>
+    <div class="uiScrollableAreaBody">
+      <% for (var i = 0; i < users.length; i++) { %>
+        <div class="card">
+          <img src="coffee.png" alt="coffee" style="width:5%">
+          <div><%= users[i].name %> : <%= users[i].userID %></div>
+        </div>
+      <% } %>
+    </div>
+
+    <h2>Create/Add User to Database</h2>
+    <div class="">
+      <form class="" action="/users/add" method="post">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name">
+        <label for="userID">User ID: </label>
+        <input type="text" name="userID" value="" placeholder="Please enter the user ID here">
+        <button type="submit" id="submit" value="submitted">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
