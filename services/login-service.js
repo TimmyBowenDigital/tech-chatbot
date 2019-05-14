@@ -12,6 +12,7 @@ function authenticate(userName, password) {
 };
 
 function logout(req) {
+
   }
 
 module.exports = {

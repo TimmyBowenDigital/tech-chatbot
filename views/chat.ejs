@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script type="text/javascript">
       var del_cookie = function(name) {
@@ -11,6 +12,7 @@
     </script>
   </head>
   <body>
+    <a href='/'>Home</a>
     <% if(userID != null) { %>
       <a href="javascript:del_cookie('userCookie');">Logout</a>
     <% } else { %>
@@ -24,7 +26,7 @@
       <div class="uiScrollableAreaBody">
         <% for (var i = 0; i < chatMessages.length; i++) { %>
           <div class="messages">
-              <span class="speech-bubble"><%= chatMessages[i].message %> : <strong> <%= chatMessages[i].userID %> </strong> </span>
+              <span class="speech-bubble"><%= chatMessages[i].message %> : <strong> <%= chatMessages[i].userID %> : <%= chatMessages[i].date %> </strong> </span>
           </div>
         <% } %>
       </div>
