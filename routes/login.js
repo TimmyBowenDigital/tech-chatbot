@@ -17,13 +17,11 @@ router.get('/', function(req, res, next) {
 router.post('/sign-in', function(req, res, next) {
   var userID = req.body.userID;
   //End result will be userID and password passed through to login-service
-  try {
-    loginService.authenticate(userID);
-    console.log("passed it");
+  if (loginService.authenticate(userID)) {
     res.cookie('userCookie', userID);
     res.redirect('/chat');
-  } catch (e) {
-    throw "Incorrect details error"
+  } else {
+    console.log("Incorrect details error");
   };
 });
 

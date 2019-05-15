@@ -7,8 +7,9 @@ function authenticate(userID, password) {
   var auth_outcome = null;
   if ( _.find(userList, { "userID": userID }) ) {
     console.log("found em");
-    return auth_outcome = successful;
+    return auth_outcome = true;
   } else {
+    return auth_outcome = false;
     console.log("Error User Not found");
   };
 };
