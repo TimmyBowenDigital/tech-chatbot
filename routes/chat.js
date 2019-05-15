@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/add', function(req, res, next) {
-  var userID = req.body.userID;
+  var newMessage = req.body;
   chatService.addMessages(newMessage);
   res.redirect('/chat');
 });

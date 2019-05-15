@@ -1,21 +1,34 @@
 var fs = require('fs');
+const _ = require("lodash");
 
-function authenticate(userName, password) {
-  try {
-    var authentication_successful = true;
-    console.log('Authentication successful');
-  } catch (e) {
-    console.log('authentication failed');
-  } finally {
-    return authentication_successful;
+var userList = require('./../mock/users.json');
+
+function authenticate(userID, password) {
+  var auth_outcome = null;
+  if ( _.find(userList, { "userID": userID }) ) {
+    console.log("found em");
+    return auth_outcome = successful;
+  } else {
+    console.log("Error User Not found");
   };
 };
 
 function logout(req) {
+};
 
-  }
+function registerUser(userDetails) {
+  //change to db.findOne when checking if unique value?
+  //intermediate solutuion being that we check a JSON string
+  if ( _.find(userList, { "userID": userDetails.userID }) ) {
+    throw "User already exists";
+  } else {
+    userList.push(userDetails);
+    return "success";
+  };
+};
 
 module.exports = {
   authenticate,
-  logout
+  logout,
+  registerUser
 };
