@@ -2,29 +2,42 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript">
+      var del_cookie = function(name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        location.reload();
+      };
+    </script>
   </head>
   <body>
+    <a href='/'>Home</a>
+    <% if(userID != null) { %>
+      <a href="javascript:del_cookie('userCookie');">Logout</a>
+    <% } else { %>
+      <a href="/login">Login</a>
+    <%  } %>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
     <h2>Chat Area</h2>
     <div class="chat-window">
-      <h3>You're chatting with Random Person! <%= userID %> :D</h3>
+      <h3>You're chatting with People! <%= userID %></h3>
+      </div>
       <div class="uiScrollableAreaBody">
         <% for (var i = 0; i < chatMessages.length; i++) { %>
-          <div class="">
-            <span><%= chatMessages[i].message %> : <%= chatMessages[i].userID %></span>
+          <div class="messages">
+              <span class="speech-bubble"><%= chatMessages[i].message %> : <strong> <%= chatMessages[i].userID %> : <%= chatMessages[i].date %> </strong> </span>
           </div>
         <% } %>
       </div>
+
       <div class="">
         <form class="" action="/chat/add" method="post">
-          <input type="hidden" name="userID" value= <%= userID %>>
+          <input type="hidden" name="userID" value=<%= userID %>>
           <textarea name="message" rows="8" cols="80" placeholder="Type your message here"></textarea>
           <button type="submit" id="message" name="submit-message">Send</button>
         </form>
       </div>
     </div>
-
   </body>
 </html>
