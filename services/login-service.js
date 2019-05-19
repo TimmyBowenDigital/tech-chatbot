@@ -15,6 +15,7 @@ function authenticate(userID, password) {
 };
 
 function logout(req) {
+
 };
 
 function registerUser(userDetails) {

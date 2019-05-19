@@ -11,5 +11,11 @@ npm install
 ```
 
 ## Usage
-
-add code here
+To start the server, run the following command.
+```bash
+npm start
+```
+A successful server start would look like this
+```terminal
+Server started
+```
