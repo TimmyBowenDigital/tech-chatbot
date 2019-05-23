@@ -1,16 +1,15 @@
 var fs = require('fs');
 
-var rawUserList = require('./../mock/users.json');
-
+var userList = require('./db-service.js');
 
 //Create users
 function createUser(user) {
     //var userList = JSON.stringify(rawUserList);
     //var user = JSON.stringify(user);
     //userList += user;
-  //  console.log(userList);
+  // console.log(userList);
     console.log('User has been added');
-    //res.redirect('/users')
+    // res.redirect('/users')
   };
   //console.log(user);
 
@@ -27,8 +26,25 @@ function editUser(user){
 
 //Get users
 function getUsers(){
-  console.log(rawUserList);
-  return rawUserList;
+    console.log(userList.findAllUserRecords());
+    return userList.findAllUserRecords();
+
+  // var promise = new Promise(function(resolve, reject) {
+  //   var users = userList.findAllUserRecords();
+  //   console.log(users);
+  //   if (users) {
+  //     resolve("stuff worked");
+  //   } else {
+  //     reject(Error("It broke"));
+  //   }
+  // });
+  //
+  // promise.then(function(result) {
+  //   console.log(result);
+  //   return result;
+  // }, function(err){
+  //   return err;
+  // });
 };
 
 module.exports = {

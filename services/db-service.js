@@ -1,24 +1,47 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
 
-var messageSchema = new Schema({
-  message: String,
-  userID: String,
-  date: {type: Date, default: Date.now},
-  conversationID: Number
-});
+function findUserRecord(userRecord) {
+  console.log(url);
+  MongoClient.connect(url, {native_parser: true}, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("chatbot");
+    dbo.collection("users").findOne({ userName: userRecord }, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      db.close();
+    });
+  });
+};
 
-var userSchema = new Schema({
-  userID: String,
-  password: String,
-  firstName: String,
-  lastName: String,
-  dob: Date,
-  meta: {
-    interests: Array,
-    Strengths: Array
-  }
-});
+// function findAllUserRecords() {
+//   console.log(url);
+//   MongoClient.connect(url, {native_parser: true}, function(err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("chatbot");
+//     dbo.collection("users").find({}, function(err, result) {
+//       //if (err) throw err;
+//       console.log(result['userName']);
+//       db.close();
+//     });
+//   });
+// };
 
-var message = mongoose.model('message', messageSchema);
-var user = mongoose.model('user', userSchema);
+function findAllUserRecords() {
+  MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("chatbot");
+    dbo.collection("users").find({}).toArray().then((result) => {
+      //console.log(result);
+      return result;
+      db.close();
+    });
+  });
+};
+
+findAllUserRecords();
+
+module.exports = {
+  findAllUserRecords: findAllUserRecords,
+  findUserRecord: findUserRecord
+};
