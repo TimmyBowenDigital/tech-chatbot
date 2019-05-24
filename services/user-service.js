@@ -4,48 +4,60 @@ var userList = require('./db-service.js');
 
 //Create users
 function createUser(user) {
-    //var userList = JSON.stringify(rawUserList);
-    //var user = JSON.stringify(user);
-    //userList += user;
-  // console.log(userList);
-    console.log('User has been added');
-    // res.redirect('/users')
-  };
+  //get userDetails from req.body.// XXX
+  //call createUser() by passing all details
+  //expect success flag
+  console.log('User has been added');
+  // res.redirect('/users')
+};
   //console.log(user);
 
 //Delete users
 function delUser(user){
+  //get userID or ID from req.body.// XXX
+  //call deleteUser() by passing in id
+  //expect success flag
   console.log('user has been deleted');
 };
 
 //Edit users
 function editUser(user){
+  //get userID or ID from req.body.// XXX
+  //call updateUser() by passing in id and fields to be updated
+  //expect success flag
   console.log('user has been edited');
 };
 
 
 //Get users
 function getUsers(){
-    console.log(userList.findAllUserRecords());
-    return userList.findAllUserRecords();
+  //Get User List from Db-Service.js (Promise)
+  var userPromise = userList.findAllUserRecords()
+  .then(function(result) {
+    console.log(result);
+    resolve(result); //Need to determing getting data to Front END!
+  }).catch(function(err) {
+    console.log("failed" + err);
+  });
 
-  // var promise = new Promise(function(resolve, reject) {
-  //   var users = userList.findAllUserRecords();
-  //   console.log(users);
-  //   if (users) {
-  //     resolve("stuff worked");
-  //   } else {
-  //     reject(Error("It broke"));
-  //   }
-  // });
-  //
-  // promise.then(function(result) {
-  //   console.log(result);
-  //   return result;
-  // }, function(err){
-  //   return err;
+  // userPromise.then(function(value) {
+  //   return userPromise;
+  //   console.log(userPromise);
+  // }, function(err) {
+  //   console.log("it failed");
   // });
 };
+
+//
+// var users = userList.findAllUserRecords();
+// console.log(users);
+// return users;
+
+//wait for response, then continue
+//catch error if error occurs
+
+//console.log(users);
+
 
 module.exports = {
   createUser,
