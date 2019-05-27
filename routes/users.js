@@ -16,7 +16,6 @@ router.get('/', function(req, res, next) {
  .catch(() => {
    res.render('error', { error: err });
  });
-
 });
 
 router.post('/add', function(req, res, next) {
