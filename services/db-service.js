@@ -18,6 +18,11 @@ function dbConnection(query) {
 	// return MongoClient.connect(url, {useNewUrlParser: true});
 }
 
+//Promise function - for querying the data. resolve(db)
+function dbQuery(queryObject) {
+
+}
+
 function findUserRecord(userRecord) {
   console.log(url);
   MongoClient.connect(url, {native_parser: true}, function(err, db) {

@@ -32,31 +32,20 @@ function editUser(user){
 //Get users
 function getUsers(){
   //Get User List from Db-Service.js (Promise)
-  var userPromise = userList.findAllUserRecords()
-  .then(function(result) {
-    console.log(result);
-    resolve(result); //Need to determing getting data to Front END!
-  }).catch(function(err) {
-    console.log("failed" + err);
-  });
-
-  // userPromise.then(function(value) {
-  //   return userPromise;
-  //   console.log(userPromise);
-  // }, function(err) {
-  //   console.log("it failed");
+  // var userPromise = userList.findAllUserRecords()
+  // .then(function(result) {
+  //   console.log( typeof result);
+  //   return result; //Need to determing getting data to Front END!
+  // }).catch(function(err) {
+  //   console.log("failed" + err);
   // });
+
+
+
+	
+
 };
 
-//
-// var users = userList.findAllUserRecords();
-// console.log(users);
-// return users;
-
-//wait for response, then continue
-//catch error if error occurs
-
-//console.log(users);
 
 
 module.exports = {
