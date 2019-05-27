@@ -36,13 +36,6 @@ function findUserRecord(userRecord) {
   });
 };
 
-// var queryOb = {
-// 	collection: "value",
-// 	method: "valuehere",
-// 	options: {}
-// }
-
-
 function findAllUserRecords() {
 	// var db = null;
 	var queryOb = {
@@ -52,30 +45,9 @@ function findAllUserRecords() {
 	}
 
 	return dbConnection(queryOb).then((users) => {
-	// return dbConnection().then((dby) => {
-	// 	db = dby.dbx;
-	// 	// console.log(db)
-	// 	return dby.dbo.collection("users").find({}).toArray();
-	// }).then((users) => {
-		//console.log(users)
-		// db.close();
 		return Promise.resolve(users);
 	})
 };
-
-
-// function findAllUserRecords() {
-//   MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
-//     if (err) throw err;
-//     var dbo = db.db("chatbot");
-//     dbo.collection("users").find({}).toArray().then((result) => {
-//       if (err) throw reject(err);
-//       //console.log(result);
-//       return result;
-//     });
-//     db.close();
-//   });
-// };
 
 findAllUserRecords();
 

@@ -6,12 +6,13 @@
     <title> <% title %> </title>
   </head>
   <body>
+    <h1> <%= title %> </h1>
     <a href='/'>Home</a>
     <div class="uiScrollableAreaBody">
-      <% for (var i = 0; i < users.length; i++) { %>
+      <% for (var user in users) { %>
         <div class="card">
           <img src="coffee.png" alt="coffee" style="width:5%">
-          <div><%= users[i].name %> : <%= users[i].userID %></div>
+          <div><p><%= users[user].userName %> : <%= users[user].firstName %></p></div>
         </div>
       <% } %>
     </div>

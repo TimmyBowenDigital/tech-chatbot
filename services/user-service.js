@@ -40,10 +40,6 @@ function getUsers(){
   //   console.log("failed" + err);
   // });
 
-
-
-	
-
 };
 
 
