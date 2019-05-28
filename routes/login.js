@@ -3,6 +3,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 
 var loginService = require('./../services/login-service');
+var userService = require('./../services/user-service');
 
 
 router.get('/', function(req, res, next) {
@@ -41,15 +42,21 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', function(req, res, next) {
-  var userDetails = req.body;
-  try {
-    loginService.registerUser(userDetails);
-    res.render('profile', { title: userDetails.userID + "'s profile!'", heading: "Welcome!"});
-  } catch (e) {
-    console.log(e);
-      //update to respond with error code
-    res.send('e');
-  };
+  	var userDetails = req.body;
+    loginService.registerUser(userDetails)
+	.then(() => userService.findUserRecord(userDetails.userName))
+	.then((result) => {
+		console.log(userDetails);
+		console.log(result);
+		res.render('user-profile', {
+			title: "'s Profile",
+			heading: "Welcome!",
+			user: result
+		});
+	})
+	.catch((err) => {
+		res.render('error', { error: err });
+	});
 });
 
 module.exports = router;

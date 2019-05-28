@@ -1,14 +1,21 @@
 var fs = require('fs');
 
-var userList = require('./db-service.js');
+var dbService = require('./db-service.js');
 
 //Create users
 function createUser(user) {
   //get userDetails from req.body.// XXX
   //call createUser() by passing all details
   //expect success flag
-  console.log('User has been added');
-  // res.redirect('/users')
+	var queryOb = {
+		collection: "users",
+		method: "insert",
+		options: { user }
+	}
+
+	return dbService.dbConnection(queryOb).then((users) => {
+		return Promise.resolve(users);
+	})
 };
   //console.log(user);
 
@@ -17,8 +24,35 @@ function delUser(user){
   //get userID or ID from req.body.// XXX
   //call deleteUser() by passing in id
   //expect success flag
-  console.log('user has been deleted');
+  var queryOb = {
+	  collection: "users",
+	  method: "deleteOne",
+	  options: { user }
+  }
+  //console.log(queryOb);
+
+  return dbService.dbConnection(queryOb).then((result) => {
+	  return Promise.resolve(result);
+  })
 };
+
+//Delete many user
+function delManyUser(user){
+  //get userID or ID from req.body.// XXX
+  //call deleteUser() by passing in id
+  //expect success flag
+  var queryOb = {
+	  collection: "users",
+	  method: "deleteMany",
+	  options: { userName: { $eq: "" }  }
+  }
+  //console.log(queryOb);
+
+  return dbService.dbConnection(queryOb).then((result) => {
+	  return Promise.resolve(result);
+  })
+};
+
 
 //Edit users
 function editUser(user){
@@ -31,22 +65,36 @@ function editUser(user){
 
 //Get users
 function getUsers(){
-  //Get User List from Db-Service.js (Promise)
-  // var userPromise = userList.findAllUserRecords()
-  // .then(function(result) {
-  //   console.log( typeof result);
-  //   return result; //Need to determing getting data to Front END!
-  // }).catch(function(err) {
-  //   console.log("failed" + err);
-  // });
+	// var db = null;
+	var queryOb = {
+		collection: "users",
+		method: "find",
+		options: {}
+	}
 
+	return dbService.dbConnection(queryOb).then((users) => {
+		return Promise.resolve(users);
+	})
+};
+
+//find individual user
+function findUserRecord(userName) {
+	var queryOb = {
+		collection: "users",
+		method: "findOne",
+		options: { userName: {$eq: userName} }
+	}
+
+	return dbService.dbConnection(queryOb).then((user) => {
+  	  return Promise.resolve(user);
+    })
 };
 
 
 
 module.exports = {
-  createUser,
-  getUsers,
-  delUser,
-  editUser
+  findUserRecord: findUserRecord,
+  getUsers: getUsers,
+  delUser: delUser,
+  editUser: editUser
 };

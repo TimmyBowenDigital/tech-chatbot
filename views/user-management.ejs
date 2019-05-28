@@ -13,7 +13,10 @@
         <div class="card">
           <img src="coffee.png" alt="coffee" style="width:5%">
           <div><p><%= users[user].userName %> : <%= users[user].firstName %></p></div>
-        </div>
+		  <div class="container">
+		  	<button onclick="window.location.href=`/users/delete/<%= users[user].userName %>`" type="button" name="delUser" id="delUser" class="danger">Delete User</button>
+		  </div>
+		</div>
       <% } %>
     </div>
 
