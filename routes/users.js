@@ -56,7 +56,11 @@ router.get('/delete/:userName', function(req, res, next) {
 	userService.delUser(userName)
 	.then((result) => {
 		console.log("user deleted");
-	})
+    res.render('user-management', {
+		 title: "User List",
+		 users: result
+	  })
+  })
 	.catch((error) => {
 		res.render('error', { error: err });
 	});
