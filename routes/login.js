@@ -44,15 +44,9 @@ router.get('/register', function(req, res, next) {
 router.post('/register', function(req, res, next) {
   	var userDetails = req.body;
     loginService.registerUser(userDetails)
-	.then(() => userService.findUserRecord(userDetails.userName))
 	.then((result) => {
-		console.log(userDetails);
 		console.log(result);
-		res.render('user-profile', {
-			title: "'s Profile",
-			heading: "Welcome!",
-			user: result
-		});
+		res.redirect('/users/' + userDetails.userName);
 	})
 	.catch((err) => {
 		res.render('error', { error: err });

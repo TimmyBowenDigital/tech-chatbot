@@ -26,11 +26,12 @@ function registerUser(userDetails) {
 	var queryOb = {
 		collection: "users",
 		method: "insertOne",
-		options: { userDetails }
+		options: { $eq: userDetails },
+		db: "chatbot"
 	}
 	//console.log(queryOb);
 
-	return dbService.dbConnection(queryOb).then((result) => {
+	return dbService.dbQuery(queryOb).then((result) => {
 		return Promise.resolve(result);
 	})
 

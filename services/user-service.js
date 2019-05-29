@@ -9,11 +9,13 @@ function createUser(user) {
   //expect success flag
 	var queryOb = {
 		collection: "users",
+		db: "chatbot",
 		method: "insert",
-		options: { user }
+		options: { $eq: user },
+		db: "chatbot"
 	}
 
-	return dbService.dbConnection(queryOb).then((users) => {
+	return dbService.dbQuery(queryOb).then((users) => {
 		return Promise.resolve(users);
 	})
 };
@@ -21,17 +23,19 @@ function createUser(user) {
 
 //Delete users
 function delUser(user){
+	console.log(user);
   //get userID or ID from req.body.// XXX
   //call deleteUser() by passing in id
   //expect success flag
   var queryOb = {
 	  collection: "users",
 	  method: "deleteOne",
-	  options: { user }
+	  options: { userName: {$eq: user} },
+	  db: "chatbot"
   }
   //console.log(queryOb);
 
-  return dbService.dbConnection(queryOb).then((result) => {
+  return dbService.dbQuery(queryOb).then((result) => {
 	  return Promise.resolve(result);
   })
 };
@@ -44,11 +48,12 @@ function delManyUser(user){
   var queryOb = {
 	  collection: "users",
 	  method: "deleteMany",
-	  options: { userName: { $eq: "" }  }
+	  options: { $eq: user.userName },
+	  db: "chatbot"
   }
   //console.log(queryOb);
 
-  return dbService.dbConnection(queryOb).then((result) => {
+  return dbService.dbQuery(queryOb).then((result) => {
 	  return Promise.resolve(result);
   })
 };
@@ -69,10 +74,11 @@ function getUsers(){
 	var queryOb = {
 		collection: "users",
 		method: "find",
-		options: {}
+		options: {},
+		db: "chatbot"
 	}
 
-	return dbService.dbConnection(queryOb).then((users) => {
+	return dbService.dbQuery(queryOb).then((users) => {
 		return Promise.resolve(users);
 	})
 };
@@ -82,10 +88,11 @@ function findUserRecord(userName) {
 	var queryOb = {
 		collection: "users",
 		method: "findOne",
-		options: { userName: {$eq: userName} }
+		options: { userName: { "$eq": userName } },
+		db: "chatbot"
 	}
 
-	return dbService.dbConnection(queryOb).then((user) => {
+	return dbService.dbQuery(queryOb).then((user) => {
   	  return Promise.resolve(user);
     })
 };

@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 		 users: result
 		});
 	})
-	.catch(() => {
+	.catch((err) => {
 		res.render('error', { error: err });
 		});
 	});
@@ -53,15 +53,13 @@ router.get('/:userName', function(req, res, next) {
 //take posted userDetails and delete user
 router.get('/delete/:userName', function(req, res, next) {
 	var userName = req.params.userName;
+	console.log(userName);
 	userService.delUser(userName)
-	.then((result) => {
-		console.log("user deleted");
-    res.render('user-management', {
-		 title: "User List",
-		 users: result
-	  })
-  })
-	.catch((error) => {
+	.then(() => console.log("user deleted"))
+	.then(() => {
+	    res.redirect('/users/');
+  	})
+	.catch((err) => {
 		res.render('error', { error: err });
 	});
 });
