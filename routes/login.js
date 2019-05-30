@@ -16,16 +16,25 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/sign-in', function(req, res, next) {
-  var userID = req.body.userID;
+  var userName = req.body.userName;
+  var password = req.body.password;
+  console.log(userName);
   //End result will be userID and password passed through to login-service
-  if (loginService.authenticate(userID)) {
-    if (auth_outcome) {
-      res.cookie('userCookie', userID);
-    }
-    res.redirect('/chat');
-  } else {
-    console.log("Incorrect details error");
-  };
+ 	loginService.authenticate(userName, password)
+	.then((result) => {
+		if (result.userName == userName) {
+			if (result.password == password) {
+				res.cookie('userCookie', userName);
+				res.redirect('/users/' + userName);
+			}
+			console.log("Incorrect Password: Check your credentials");
+	  	} else {
+	    	console.log("Username not found");
+	  	};
+	})
+	.catch((err) => {
+		res.render('error', { error: err });
+	});
 });
 
 router.get('/logout', function(req, res, next) {
@@ -42,11 +51,10 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', function(req, res, next) {
-  	var userDetails = req.body;
-    loginService.registerUser(userDetails)
-	.then((result) => {
-		console.log(result);
-		res.redirect('/users/' + userDetails.userName);
+  	//var userDetails = req.body;
+    loginService.registerUser(req.body)
+	.then(() => {
+		res.redirect('/users/' + req.body.userName);
 	})
 	.catch((err) => {
 		res.render('error', { error: err });

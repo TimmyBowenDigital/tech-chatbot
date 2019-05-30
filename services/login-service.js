@@ -6,6 +6,18 @@ var userService = require('./user-service');
 
 function authenticate(userID, password) {
 	var auth_outcome = null;
+
+	var queryOb = {
+		collection: "users",
+		method: "findOne",
+		options: { userName: {$eq: userID} },
+		db: "chatbot"
+	}
+
+	return dbService.dbQuery(queryOb).then((result) => {
+		return Promise.resolve(result);
+	});
+
 	// if ( _.find(userArray, { "userID": userID }) ) {
 	// 	console.log("found em");
 	// 	return auth_outcome = true;
@@ -21,12 +33,13 @@ function logout(req) {
 
 //registerUser but duplication can be found in user-service with createUser
 function registerUser(userDetails) {
+	console.log(userDetails);
   //change to db.findOne when checking if unique value?
   //intermediate solutuion being that we check a JSON string
 	var queryOb = {
 		collection: "users",
 		method: "insertOne",
-		options: { $eq: userDetails },
+		options: userDetails,
 		db: "chatbot"
 	}
 	//console.log(queryOb);

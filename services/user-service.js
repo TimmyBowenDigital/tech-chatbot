@@ -23,7 +23,6 @@ function createUser(user) {
 
 //Delete users
 function delUser(user){
-	console.log(user);
   //get userID or ID from req.body.// XXX
   //call deleteUser() by passing in id
   //expect success flag
@@ -33,7 +32,6 @@ function delUser(user){
 	  options: { userName: {$eq: user} },
 	  db: "chatbot"
   }
-  //console.log(queryOb);
 
   return dbService.dbQuery(queryOb).then((result) => {
 	  return Promise.resolve(result);

@@ -34,7 +34,6 @@ router.post('/add', function(req, res, next) {
   });
 });
 
-
 //return user with userName passed with URL
 router.get('/:userName', function(req, res, next) {
 	var userName = req.params.userName;
@@ -53,11 +52,9 @@ router.get('/:userName', function(req, res, next) {
 //take posted userDetails and delete user
 router.get('/delete/:userName', function(req, res, next) {
 	var userName = req.params.userName;
-	console.log(userName);
 	userService.delUser(userName)
-	.then(() => console.log("user deleted"))
 	.then(() => {
-	    res.redirect('/users/');
+	    res.redirect('/users');
   	})
 	.catch((err) => {
 		res.render('error', { error: err });
