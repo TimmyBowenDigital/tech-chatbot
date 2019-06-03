@@ -10,8 +10,11 @@
     <a href='/'>Home</a>
     <div class="uiScrollableAreaBody">
       <% for (var user in users) { %>
-        <div class="card">
-          <img src="coffee.png" alt="coffee" style="width:5%">
+
+		<div class="card">
+			<a href="/users/<%= users[user].userName %>">
+          		<img src="coffee.png" alt="coffee" style="width:5%">
+			</a>
           <div><p><%= users[user].userName %> : <%= users[user].firstName %></p></div>
 		  <div class="container">
 		  	<a class="button danger" href="/users/delete/<%= users[user].userName %>" type="button" name="delUser" id="delUser">Delete User</a>

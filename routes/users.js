@@ -34,21 +34,6 @@ router.post('/add', function(req, res, next) {
   });
 });
 
-//return user with userName passed with URL
-router.get('/:userName', function(req, res, next) {
-	var userName = req.params.userName;
-	userService.findUserRecord(userName)
-	.then((result) => {
-		res.render('user-profile', {
-			title: "'s Profile",
-			user: result
-		});
-	})
-	.catch((err) => {
-		res.render('error', { error: err });
-	});
-});
-
 //take posted userDetails and delete user
 router.get('/delete/:userName', function(req, res, next) {
 	var userName = req.params.userName;

@@ -11,7 +11,7 @@ function dbQuery(query) {
 			if (query.method == "findOne") {
 				// console.log(query.options);
 				var res = dbo.collection(query.collection)[query.method](query.options)
-				resolve(res)
+				resolve(res);
 			} else if (query.method == "insertOne" || query.method == "insertMany" ) {
 				var res = dbo.collection(query.collection)[query.method](query.options, function(err, res) {
 					if (err) throw err;
@@ -20,13 +20,14 @@ function dbQuery(query) {
 				resolve(res);
 			} else if ( query.method == "deleteOne" ) {
 				var res = dbo.collection(query.collection)[query.method](query.options);
+				console.log("user deleted");
 				resolve(res)
 			} else {
-				var res = dbo.collection(query.collection)[query.method](query.options).toArray();
+				var res = dbo.collection(query.collection)[query.method](query.options).toArray()
 				resolve(res)
 			}
-	});
-})
+		});
+	})
 };
 
 module.exports = {

@@ -8,8 +8,11 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome <%= user %></p>
-    <a href='/users'>User Management</a>
-    <a href='/chat'>Chat</a>
-    <a href='/login'>Login</a>
+	<% if (locals.user) { %>
+	    <a href='/users'>User Management</a>
+	    <a href='/chat'>Chat</a>
+	<% } else { %>
+	    <a href='/login'>Login</a>
+	<% } %>
   </body>
 </html>
