@@ -8,7 +8,6 @@ a {
 }
 
 .speech-bubble {
-	position: relative;
 	background: #7bdc63;
 	border-radius: 0.4em;
 }
@@ -16,7 +15,6 @@ a {
 .speech-bubble:after {
 	content: '';
 	position: absolute;
-	left: 0;
 	top: 50%;
 	width: 0;
 	height: 0;
@@ -29,14 +27,37 @@ a {
 
 .received-message {
   text-align: left;
+  border: 19px solid;
 }
 
 .sent-message {
   text-align: left;
+  border: 19px solid;
 }
 
 .messages {
-  margin: 5px;
+	border: 1px solid;
+	padding: 5px;
+  	margin: 5px;
+  	border-radius: 0.4em;
+}
+
+.receiving-message {
+	text-align: left;
+	left: 0;
+}
+
+.sending-message {
+	text-align: right;
+	right: 0;
+}
+
+.chat-window {
+	padding: 5px;
+	border-radius: 0.4em;
+	overflow: scroll;
+	overflow-x: hidden;
+	max-height: 50%;
 }
 
 .card {

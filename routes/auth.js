@@ -7,7 +7,7 @@ var querystring = require('querystring');
 
 dotenv.config();
 
-router.get('/login', passport.authenticate('auth0', {
+router.get('/sign-in', passport.authenticate('auth0', {
 	scope: 'openid email profile'
 }), function(req, res) {
 	res.redirect('/');

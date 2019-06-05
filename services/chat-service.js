@@ -5,6 +5,15 @@ const _ = require("lodash");
 
 let chatMessages = [];
 
+let chats = [
+	{ userID: "TimmyTheTrumpet" },
+	{ userID: "Timmy" },
+	{ userID: "TimmyTurner" },
+	{ userID: "TimmyTumper" },
+	{ userID: "TimmyThumper" },
+	{ userID: "Timmyhoodlem" }
+];
+
 function addMessages(messages) {
   chatMessages.push(messages);
 };
@@ -14,7 +23,12 @@ function getAllMessages() {
   return chatMessages;
 };
 
+function getConversations() {
+	return chats;
+};
+
 module.exports = {
-  addMessages,
-  getAllMessages
+  addMessages: addMessages,
+  getAllMessages: getAllMessages,
+  getConversations: getConversations
 };

@@ -5,7 +5,7 @@ var router = express.Router();
 var userService = require(`./../services/user-service`);
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/users', function(req, res, next) {
 	userService.getUsers()
 	.then((result) => {
 		res.render('user-management', {
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 	});
 
 //Call createUser() and pass in req.body values
-router.post('/add', function(req, res, next) {
+router.post('/users/add', function(req, res, next) {
   var user = req.body;
   userService.createUser(user)
   .then((result) => {
@@ -35,7 +35,7 @@ router.post('/add', function(req, res, next) {
 });
 
 //take posted userDetails and delete user
-router.get('/delete/:userName', function(req, res, next) {
+router.get('/users/delete/:userName', function(req, res, next) {
 	var userName = req.params.userName;
 	userService.delUser(userName)
 	.then(() => {

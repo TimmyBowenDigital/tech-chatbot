@@ -1,0 +1,21 @@
+<head>
+	<div class="jumbotron container">
+		<title><%= title %></title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script type="text/javascript">
+		  var del_cookie = function(name) {
+			document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+			location.reload();
+		  };
+		</script>
+		<a href='/'>Home</a>
+		<% if(userID != null) { %>
+		  <a href="javascript:del_cookie('userCookie');">Logout</a>
+		<% } else { %>
+		  <a href="/login">Login</a>
+		<%  } %>
+		<h1><%= title %></h1>
+	  	<h2>Chat Area</h2>
+	</div>
+</head>

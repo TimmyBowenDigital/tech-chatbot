@@ -4,20 +4,21 @@ var bodyParser = require('body-parser');
 
 var chatService = require('./../services/chat-service.js');
 
-router.get('/', function(req, res, next) {
+router.get('/chat', function(req, res, next) {
   if (("userCookie" in req.cookies) && req.cookies.userCookie != null ) {
     //console.log("Login Successful");
     res.render('chat', {
       title: 'Chatbot',
       chatMessages: chatService.getAllMessages(),
-      userID: req.cookies.userCookie
+      userID: req.cookies.userCookie,
+	  chats: chatService.getConversations()
       });
   } else {
     res.render('login', { title: 'Login' });
   }
 });
 
-router.post('/add', function(req, res, next) {
+router.post('/chat/add', function(req, res, next) {
   var newMessage = req.body;
   chatService.addMessages(newMessage);
   res.redirect('/chat');

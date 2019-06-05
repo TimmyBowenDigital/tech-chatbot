@@ -70,7 +70,8 @@ app.use(userInViews());
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', chatRouter);
-app.use('/', authRouter);
+app.use('/', loginRouter);
+//app.use('/', authRouter);
 app.use('/', userRouter);
 
 passport.serializeUser(function(user, done) {

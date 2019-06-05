@@ -6,7 +6,7 @@ var loginService = require('./../services/login-service');
 var userService = require('./../services/user-service');
 
 
-router.get('/', function(req, res, next) {
+router.get('/login', function(req, res, next) {
   if (("userCookie" in req.cookies) && req.cookies.userCookie != null ) {
     res.redirect('/chat');
     console.log("Login Successful");
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.post('/sign-in', function(req, res, next) {
+router.post('/login/sign-in', function(req, res, next) {
   var userName = req.body.userName;
   var password = req.body.password;
   console.log(userName);
@@ -37,11 +37,11 @@ router.post('/sign-in', function(req, res, next) {
 	});
 });
 
-router.get('/logout', function(req, res, next) {
+router.get('/login/logout', function(req, res, next) {
 
 });
 
-router.get('/register', function(req, res, next) {
+router.get('/login/register', function(req, res, next) {
   if (("userCookie" in req.cookies) && req.cookies.userCookie != null ) {
     console.log('Previously registered');
     res.send('You are already successfully logged in and registered');
@@ -50,7 +50,7 @@ router.get('/register', function(req, res, next) {
   }
 });
 
-router.post('/register', function(req, res, next) {
+router.post('/login/register', function(req, res, next) {
   	//var userDetails = req.body;
     loginService.registerUser(req.body)
 	.then(() => {
