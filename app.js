@@ -20,7 +20,7 @@ var userInViews = require('./services/middleware/userInViews');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var chatRouter = require('./routes/chat');
-var loginRouter = require('./routes/login');
+//var loginRouter = require('./routes/login');
 var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
 
@@ -70,8 +70,8 @@ app.use(userInViews());
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', chatRouter);
-app.use('/', loginRouter);
-//app.use('/', authRouter);
+//app.use('/', loginRouter);
+app.use('/', authRouter);
 app.use('/', userRouter);
 
 passport.serializeUser(function(user, done) {
