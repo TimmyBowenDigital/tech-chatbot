@@ -8,8 +8,7 @@ router.get('/user', secured(), function(req, res, next) {
 	let userInformation = req.user;
 	res.render('user-profile', {
 		userProfile: JSON.stringify(userProfile, null, 2),
-		title: "'s Profile",
-		userInformation: userInformation
+		title: "'s Profile"
 	});
 });
 
