@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var secured = require('./../services/middleware/secured');
 //var userService = require('./../services/user-service');
 var userService = require(`./../services/user-service`);
 

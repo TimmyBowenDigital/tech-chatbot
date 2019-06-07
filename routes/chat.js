@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
+var secured = require('./../services/middleware/secured');
 var chatService = require('./../services/chat-service.js');
 
 router.get('/chat', secured(), function(req, res, next) {
@@ -13,8 +14,6 @@ router.get('/chat', secured(), function(req, res, next) {
       userID: req.cookies.userCookie,
 	  chats: chatService.getConversations()
       });
-  } else {
-    res.render('login', { title: 'Login' });
   }
 });
 
