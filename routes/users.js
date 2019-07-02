@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var secured = require('./../services/middleware/secured');
 //var userService = require('./../services/user-service');
 var userService = require(`./../services/user-service`);
 
@@ -19,7 +20,7 @@ router.get('/users', function(req, res, next) {
 	});
 
 //Call createUser() and pass in req.body values
-router.post('/users/add', function(req, res, next) {
+router.post('/users/add', secured(), function(req, res, next) {
   var user = req.body;
   userService.createUser(user)
   .then((result) => {
@@ -35,7 +36,7 @@ router.post('/users/add', function(req, res, next) {
 });
 
 //take posted userDetails and delete user
-router.get('/users/delete/:userName', function(req, res, next) {
+router.get('/users/delete/:userName', secured(), function(req, res, next) {
 	var userName = req.params.userName;
 	userService.delUser(userName)
 	.then(() => {

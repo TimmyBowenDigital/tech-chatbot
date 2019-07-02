@@ -11,11 +11,10 @@
 		</script>
 		<a href='/'>Home</a>
 		<% if(userID != null) { %>
-		  <a href="javascript:del_cookie('userCookie');">Logout</a>
+		  <a href="/logout">Logout</a>
 		<% } else { %>
 		  <a href="/login">Login</a>
 		<%  } %>
 		<h1><%= title %></h1>
-	  	<h2>Chat Area</h2>
 	</div>
 </head>

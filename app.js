@@ -20,7 +20,6 @@ var userInViews = require('./services/middleware/userInViews');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var chatRouter = require('./routes/chat');
-//var loginRouter = require('./routes/login');
 var userRouter = require('./routes/user');
 var authRouter = require('./routes/auth');
 
@@ -70,7 +69,6 @@ app.use(userInViews());
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', chatRouter);
-//app.use('/', loginRouter);
 app.use('/', authRouter);
 app.use('/', userRouter);
 
@@ -91,12 +89,17 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {
+	  title: res.locals.error,
+	  userID: req.cookies.userCookie
+  });
 });
 
 module.exports = app;
